@@ -8,7 +8,17 @@
 *
 * @section DESCRIPTION
 *
-* This file is ...
+* This file tests null pointer dereferencing
+
+* Output in Linux:
+
+tiger[00:21:20](139)(master)~/src/cpsc8240$ ./derefnull
+NULL is '(null)', but something is 'something'.
+Segmentation fault
+
+* Output in xv6:
+
+
 */
 
 //#include <stddef.h>
