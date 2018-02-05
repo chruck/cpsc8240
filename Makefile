@@ -1,1 +1,2 @@
+CFLAGS = -ggdb
 derefnull:
