@@ -1,0 +1,238 @@
+
+
+Midterm review
+
+Format
+short questios, analysis, implementation
+
+
+scheduling
+- different policies, turnaround vs. response
+  round robin: queue, rotate through jobs
+           how long do you run a job for? -> time slice
+           (multiple of timer interrupt period)
+           tradeoff between longer/shorter time slices
+           -> shorter, more responsive (but could pay ctxt switch overhead)
+  shortest job first (SJF) -> STCF (general form)
+           runs the shortest job first
+           minimizes turnaround time
+           not so great for response
+  mlfq:    ...
+           starvation: could be an issue
+              periodic reset
+           "gaming" the scheduler: gain unfair share (need to avoid)
+  response time: time to first scheduled
+  turnaround time: time to completion
+
+
+base/bounds (dynamic relocation):
+- addr translation: easy
+  base + virt. addr -> phys addr
+  wasteful
+
+segmentation:
+- how the math works w/ backwards-growing segment
+
+segment: variable length regions of addr space, contiguous
+
+base/bounds PER SEGMENT
+
+code
+code
+code 
+heap
+heap
+...
+...
+stack
+
+for forward-growing segments (code,heap) -> same math
+   (addr trans.: base for that segment + offset within segment -> phys addr)
+for backwards-growing segments: 
+   
+ARG address space size 1k
+ARG phys mem size 16k
+
+Segment register information:
+
+  Segment 0 base  (grows positive) : 1000
+  Segment 0 limit                  : 293
+
+  Segment 1 base  (grows negative) : 2000
+  Segment 1 limit                  : 372
+
+0 ... 511
+512 ... 1023
+
+virt addr 0 ... 292 are valid
+-> phys addresses: 1000 ... 1292
+
+virt addr 1023 ... 652
+-> phys addresses -> 1999 ... 1628
+
+paging
+- translation
+  v->p
+page: fixed sized chunk of memory
+  (AS and phys mem divided page-sized units)
+
+32-bit vAS , 2-byte page size
+  VA: 31 30 ... 2 1 0
+      (31-bit VPN) (1 bit offset)
+  page table size: 
+    assume "linear" page table (or array, one entry per v. page)
+  size: 2^31 entries x sizeof(page table entry)
+
+translation:
+  hardware: is fast, better do MOST of the work
+    page table base register -> points the page table of 
+                                currently running process
+    address of a page table entry:
+      PTE_addr: PTBR + (VPN * sizeof(PTE))
+  PTE: valid bit | prot bit | PFN (page frame #)
+    PA: PFN | offset
+
+addr translation information:
+  page table
+
+too slow
+TLB
+- addr translation cache
+  h/w checks in TLB first before going to page table
+- entry: what's in them, why?
+  TLB entry: valid bit | VPN | PFN | prot | Addr Space ID or PID
+          (whether TLB
+         entry is in use)
+- h/w or s/w managed TLBs
+  TLB miss: who handles this
+    h/w: hardware does the page table lookup
+      (and updates TLB)
+    s/w (os): os does
+      TLB miss -> exception
+      lookup in PT, update TLB with special instructions, ret-from-trap
+
+too big
+waste in linear/array page tables:
+-> many pages may not be valid (mapped)
+   PTE: valid | ....
+        v=0   
+
+- multi-level paging: 
+  how it works, example
+
+               PageDirectory
+               has entry per page of page table
+               -> valid: exists one page in that page of the page table
+                          that is valid
+               -> not:   no page of that page of the page table
+                         is valid
+
+  PTE0 PTE1 .... |              | ....    | PTEn-k   PTEn
+    page 0 of PT   page 1 of PT   ....      last page of PT
+
+valid: 1 1 0 0   |  0  0  0  0  | ....    | 0  0  0  1  
+
+-----
+
+linear page tables are too big
+- hybrid paging / segmentation
+
+base/bounds per segment (e.g., 2 segments)
+base   -> addr of page table of that segment
+bounds -> how many valid PTEs are in each page table
+
+code
+code
+code 
+heap
+heap
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+stack
+
+
+
+concurrency
+
+locking
+- mutexes, types of locks
+
+lock()
+// critical section -> one thread can be active in here at a time
+unlock()
+
+spin locks
+- need some kind of h/w instruction that is more powerful
+  than a simple load or store
+
+e.g.,
+- atomic exchange (test-and-set)
+
+returns old value of address
+updates address to store new value
+does all of this atomically
+
+lock: 0 -> unlocked
+      1 -> locked
+
+lock(int *addr)
+  while (atomic_exchange(addr, 1) == 1)
+    ; // spin and wait for lock to become free
+  // here: acquired lock
+
+unlock(int *addr)
+  *addr = 0;
+
+OS support:
+- yield()
+  (+ more complex)
+
+fairness:
+- ticket locks
+
+cond. vars:
+- tired
+
+semaphores
+- used instead of locks and CVs
+- init value
+  wait()
+    while (value <= 0)
+      sleep()
+    value--;
+  post()
+    wake one sleeping thread
+    value++
+  routines are done ATOMICALLY
+- init value is 1: -> lock
+
+Deadlock bugs
+- how does deadlock occur and how to prevent it
+  mutual exclusion, hold-and-wait, no preemption, circular wait
+  
+
+Persistence
+- disk performance
+- how RAID 0,1,4,5 work?
+- on-disk structures
+  how does file system represent files, directories?
+- access methods
+  what steps must create, open, read, write take with a basic unix file system?
+- allocation strategies
+- jounaling
+  different inconsistence scenarios
+  strategy
+  mechanisms
+- copy-on-write
+  which performance is the target, read or write?
+  how to find inodes in on-disk log?
+  how to recover from a crash?
+  how to garbage collect dead information?
