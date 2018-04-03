@@ -1,0 +1,22 @@
+Research Project or Programming Assignment
+
+In case of research project
+- 1-2 students per team
+- 1-page proposal due Tuesday 3/27
+        - Problem statement and importance
+        - Project goal and tasks
+        - Proposed method to carry out the tasks
+        - Timeline
+        - Deliveries
+
+Paper summary (1-page)
+- What is the addressed problem and why is it important to address?
+- What has been done?  What do previous studies fail to do and why?
+- What is novelty of this work?
+- What is the technical method and approach of this work?
+- How is the work evaluated?  Are the evaluation method concrete?  Does
+  the evaluation cover all the aspects of consideration?  Do the
+  evaluation results support the claims?
+- What are impacts of this work?
+
+Required for each paper reading after spring break
