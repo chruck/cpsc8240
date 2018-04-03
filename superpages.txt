@@ -1,0 +1,33 @@
+Over time, the amount of main memory on computers has increased,
+while the Translation Lookaside Buffer (TLB), which caches page table
+virtual-to-physical address mappings, has remained the same.  Because the
+usage of memory has increased due to the amount of memory increasing,
+the "TLB coverage" has decreased, causing misses.
+
+Up to the point of this paper, most operating systems (OSes) have
+page sizes that can be adjusted, so larger pages can be used.
+However, this leads to inefficiency and internal fragmentation if there
+are lots of small-memory processes.  Multiple levels of page sizes
+have been written about, but this paper implements these on an actual
+OS.  Also, if a process grows in the number of pages needed, it may
+consolidate them into fewer superpages (called "promotion"), and may
+also "demote" from superpages when memory usage decreases.
+
+The unique approach of this work is in the concrete implementation of
+superpages on an existing OS, combining the many techniques previously
+written about.
+
+The authors address the "TLB coverage" problem by actually implementing
+"superpages" on FreeBSD on the Alpha architecture, with multiple
+groups of page sizes, promotion/demotion, and handling of dirty pages.
+
+A lot of memory load tests were run to verify the results.  The paper uses
+many figures which have tables of data and graphs that plot other data.
+
+Because the techniques used in this paper are later used in FreeBSD
+and other OSes such as Linux, it is clear the impact is great.  In
+addition, this paper is cited by 198 papers according to Google
+Scholar, including one of our other influential papers, "Xen and the
+art of virtualization".
+
+-- Jas Eckard
