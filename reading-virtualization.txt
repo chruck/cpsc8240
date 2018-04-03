@@ -1,0 +1,20 @@
+Virtualization
+
+1. Xen: Xen and the Art of Virtualization.  
+https://www.cl.cam.ac.uk/research/srg/netos/papers/2003-xensosp.pdf
+
+2. Memory Resource Management in VMware ESX Server.  
+https://www.vmware.com/pdf/usenix_resource_mgmt.pdf
+
+3. Practical, transparent operating system support for superpages 
+https://people.mpi-sws.org/~druschel/publications/superpages.pdf
+
+Others
+
+1. Lightweight Recoverable Virtual Memory. https://people.eecs.berkeley.edu/~brewer/cs262/lrvm.pdf
+
+2. My VM is Lighter (and Safer) than your Container. http://cnp.neclab.eu/projects/lightvm/lightvm.pdf
+
+. Virtualize everything but time
+
+3. Performance Evaluation of Container-based Virtualization for High Performance Computing Environments. https://arxiv.org/abs/1709.10140
