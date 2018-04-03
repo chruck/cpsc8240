@@ -1,0 +1,18 @@
+- ')' indicates Canvas hand-in assignments
+- 1-7 were in the original file "reading-virtualization.pptx".
+
+
+1. Xen: Xen and the Art of Virtualization
+2) Memory Resource Management in VMware ESX Server
+3) Practical, transparent operating system support for superpages
+4. Lightweight Recoverable Virtual Memory
+5. My VM is Lighter (and Safer) than your Container
+6. Virtualize everything but time
+7. Performance Evaluation of Container-based Virtualization for High Performance Computing Environments
+8) Algorithms for Scalable Synchronization on Shared-Memory Multiproessors
+9) Tornado: Maximizing Locality and Concurrency in a Shared memory Multiprocessor Operating System
+10) Time, Clocks, and the Ordering of Events in a Distributed System
+11) PACER: Proportional Detection of Data Races
+12) The Unwritten Contract of Solid State Drives
+13) NOVA-Fortis: A Fault-Tolerant Non-Volatile Main Memory File System
+14) Dynamo: Amazon's Highly Available Key-Value Store
