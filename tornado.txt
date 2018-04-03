@@ -1,0 +1,27 @@
+- What is the addressed problem and why is it important to address?
+1999
+new OS
+designed for shmem multiprocessors
+need better locality for cache misses in NUMA
+recent design:
+        - sharing expensive
+        - mem latency high, non-uniform
+        - large caches
+        - concurrency less performance concern vs locality
+
+- What has been done?  What do previous studies fail to do and why?
+
+- What is novelty of this work?
+object-oriented resources
+        - clustered objects
+        - protected procedure call
+        - new locking strategy, w/i objs
+
+- What is the technical method and approach of this work?
+
+- How is the work evaluated?  Are the evaluation method concrete?  Does
+  the evaluation cover all the aspects of consideration?  Do the
+  evaluation results support the claims?
+
+- What are impacts of this work?
+cited by 254
