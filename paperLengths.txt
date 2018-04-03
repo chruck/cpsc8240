@@ -1,0 +1,9 @@
+paper length
+---
+42 - Algorithms for Scalable Synchronization
+-> 15 - Tornado
+-> 8 - Time, Clocks, Ordering
+-> 13? - PACER
+18 - Contract of SSDs
+19 - NOVA-Fortis NVMM FS
+16 - Dynamo
