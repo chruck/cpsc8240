@@ -1,0 +1,41 @@
+Summary of "Memory Resource Management in VMware ESX Server" by Carl
+A. Waldspurger
+
+This paper discusses the specific problem of memory allocation and
+management for multiple Virtual Machines (VMs) on the Virtual Machine
+Monitor (VMM) VMware ESX Server.  This topic is important in order to
+fairly, reasonably, and efficiently divide a host Operating System's
+(OS) memory among its guest OSes.
+
+In this paper, several techniques have been implemented in ESX Server to
+manage memory:  ballooning, idle memory tax, content-based page sharing,
+and hot I/O page remapping.  These are improvements on previous work
+because they do not modify existing guest OSes beyond adding device
+drivers, and they efficiently share the memory resources of the guest
+OS, even to oversubscribing.
+
+The four techniques are novel in the way they manage memory:  For
+ballooning, the guest OS pages out memory as it always has, without
+knowing that the reason is due to the balloon device driver.  By adding
+an idle memory tax, memory that is not in use by some VMs can be given to
+others.  The page sharing techniques reduce memory usage by deduplicating
+pages of memory for use across multiple VMs.  I/O page remapping reduces
+the amount of wait time on the host by reducing I/O.
+
+The method of approach of this work is through implementing each new
+technique on an ESX Server guest OS and testing the results each
+technique brings individually.  The combination of all of these
+techniques results in a better VMM.
+
+The evaluations are in the form of repeated tests of different
+parameters across multiple runs.  The results are explained and
+graphed in concrete figures.  The evaluations cover most aspects
+considered at the time of its writing, and mention future improvements
+or alternative methods that should have been considered.
+
+This work was very important.  It introduced or improved upon many
+techniques still used today in many different VMMs, and has since
+been cited by 1638 papers according to ACM, including our other paper,
+"Xen and the Art of Virtualization".
+
+-- Jas Eckard
