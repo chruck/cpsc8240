@@ -1,27 +1,38 @@
-- What is the addressed problem and why is it important to address?
-1999
-new OS
-designed for shmem multiprocessors
-need better locality for cache misses in NUMA
-recent design:
-        - sharing expensive
-        - mem latency high, non-uniform
-        - large caches
-        - concurrency less performance concern vs locality
+Summary of:
+Tornado: Maximizing Locality and Concurrency in a Shared Memory Multiprocessor Operating System
 
-- What has been done?  What do previous studies fail to do and why?
+Jas Eckard
 
-- What is novelty of this work?
-object-oriented resources
-        - clustered objects
-        - protected procedure call
-        - new locking strategy, w/i objs
+In the 1990s, when shared memory multiprocessors and the NUMA architecture
+were still new, it was discovered that this new architecture performed
+differently than the previous ones and the operating systems designed
+for them.  NUMA introduced larger caches, high cache-miss latencies,
+and non-uniform cache locality.  Once locality and concurrency became a
+problem, especially the ratio of cache-miss latency to overall processor
+speed, this area of research needed to be addressed.
 
-- What is the technical method and approach of this work?
+This team of researchers at University of Toronto and IBM took a novel
+approach by creating an object-oriented operating system to run on
+a parallel architecture, based on Hurricane OS.  The design includes
+having locks local to objects, clustered objects, protected procedure
+calls, and each processor having its own object, which knows about the
+locality of its memory.
 
-- How is the work evaluated?  Are the evaluation method concrete?  Does
-  the evaluation cover all the aspects of consideration?  Do the
-  evaluation results support the claims?
+Previous studies had mostly focused only on concurrency and not locality.
+This started to become a concern because the NUMA architecture introduced
+non-uniform latency, and the ratio of cache speed to processor speed
+became more significant.
 
-- What are impacts of this work?
-cited by 254
+The work is evaluated using several microbenchmarks which examine the
+thread creation, in-core page faults, and file stats across several
+similar systems of the time.  However, because the systems tested are so
+different, and Tornado was only tested on NUMAchine and SimOS hardware,
+it makes me wonder about the results.  The results given for the tests
+of proposed techniques are O(1), which seems suspicious.
+
+This work is cited by 254 other papers.  Its approach to designing an
+object-oriented operating system was interesting, and several
+operating systems began being written in an object-oriented manner.
+However, I know that in the case of Linux, using C++ over C became
+more of a performance- and management-issue, which is why C++ was
+abandoned in favor of C in the Linux kernel.
