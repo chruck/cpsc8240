@@ -1,0 +1,29 @@
+Summary of:
+Time, Clocks, and the Ordering of Events in a Distributed System
+
+- What is the addressed problem and why is it important to address?
+        - time-ordering of events in distributed system
+        - necessary to know if messages passed in distributed system
+        are before/after other messages
+
+- What has been done?
+        - Lamport timestamps:  arbitrary clock in each of a
+        distributed system, events come one after another.  When from
+        another system, can be determined if after another event based
+        on arrival.
+  - What do previous studies fail to do and why?
+        - ?
+- What is novelty of this work?
+        - ?
+- What is the technical method and approach of this work?
+        - relativity?
+- How is the work evaluated?
+        - Mathematical proof
+  - Are the evaluation method concrete?
+        - yes
+  - Does the evaluation cover all the aspects of consideration?
+        - ?
+  - Do the evaluation results support the claims?
+        - ?
+- What are impacts of this work?
+        - ?
