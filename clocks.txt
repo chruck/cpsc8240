@@ -1,29 +1,39 @@
 Summary of:
 Time, Clocks, and the Ordering of Events in a Distributed System
 
-- What is the addressed problem and why is it important to address?
-        - time-ordering of events in distributed system
-        - necessary to know if messages passed in distributed system
-        are before/after other messages
 
-- What has been done?
-        - Lamport timestamps:  arbitrary clock in each of a
-        distributed system, events come one after another.  When from
-        another system, can be determined if after another event based
-        on arrival.
-  - What do previous studies fail to do and why?
-        - ?
-- What is novelty of this work?
-        - ?
-- What is the technical method and approach of this work?
-        - relativity?
-- How is the work evaluated?
-        - Mathematical proof
-  - Are the evaluation method concrete?
-        - yes
-  - Does the evaluation cover all the aspects of consideration?
-        - ?
-  - Do the evaluation results support the claims?
-        - ?
-- What are impacts of this work?
-        - ?
+This paper addresses the problem of time-ordering of events in a
+distributed system.  It is necessary to know if messages passed in
+distributed system are before or after other messages.  This paper
+introduces what have since been named "Lamport timestamps":  using an
+arbitrary clock in each node of a distributed system, where events come
+one after another.  When the events are from another system, it can be
+determined if it is after another event based on its arrival.
+
+This paper also introduces the concepts of "happened before" (and its
+symbology), "partial ordering", "total ordering", "logical clocks" (the
+foundation of which are used in "vector clocks"), and "physical clocks"
+within distributed systems.  In addition, two algorithms are described
+and a theorem and its proof.  It notes that previous work have studied
+synchronizing physical clocks, but they have all set clocks backwards,
+where this work does not.
+
+The novelty of this study is in the arbitrary setting of a clock and
+its time units.  It abandons the natural notion of using "physical"
+clock time.  In addition, synchronizing the clocks only forward was new
+at its writing.  It is brief, but is evaluated by rigorous logical and
+mathematical proofs, and I especially appreciated the acknowledgement that
+this "assumes a Newtonian space-time" and refers to Special Relativity.
+However, not all aspects have been explained, as there are references
+to later publications and notes that "the problem of failure is a
+difficult one, and it is beyond the scope of this paper to discuss it
+in any detail".
+
+This work was written in 1978, and has had a huge impact.  It is cited
+in over 10,000 papers, and is the groundwork for vector clocks, which
+are referred to in our next paper, "PACER".  I have seen reviews of it
+online stating that it is simultaneously groundbreaking and obvious.
+Prior to knowing this is the basis of arbitrary logical time, I have seen
+its effect in NTP (for distributed clock synchronization) and in git
+(for its historical/ancestor view of branches).  This paper received
+the PODC Influential Paper Award in 2000.
