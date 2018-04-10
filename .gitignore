@@ -35,6 +35,7 @@
 *.pdf
 
 # Powerpoints
+*.ppt
 *.pptx
 
 # symlinks, start with 20180
