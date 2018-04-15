@@ -1,0 +1,12 @@
+Review of:
+PACER:  Proportional Detection of Data Races
+
+This paper points out that it is difficult to dynamically track down data race conditions without incurring extra load on a program.  I hav noticed that doing so sometimes can make a data race disappear because it is slower than when running normally, where the data race occurs.  It has become more important in the last decade due to more processors being put in computers and therefore applications needing to be more highly threaded.
+
+In this paper, a set of algorithms have been implemented to take samples of process state, and at the rate of sampling, a constant rate of resources can be used to debug and diagnose data race conditions.
+
+Previous algorithms have increasingly become better at debugging data race conditions, but the best are still creating load at a factor of 8.
+
+Unlike previous attempts, this set of algorithms takes samples of readings.  The tradeoff of this is that the accuracy is at the rate of the samples, and so the authors say it has a "proportionality guarantee" (thus the title) and call it a "get what you pay for" approach.  It combines several other algorithms that themselves were improvements.
+
+I actually had difficulty understanding this paper.  A lot of the formal proofs used symbology I am not familiar with and the description of the algorithms were also difficult to follow.  But the benchmarking data and graphs seemed to support the fact that PACER, using FASTTRACK and LITETRACK, with the correct sampling rate, yields excellent debugging capabilities in tracking down data race conditions.  According to Google, this paper has been cited 200 times.
